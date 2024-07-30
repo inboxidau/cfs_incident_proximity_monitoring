@@ -121,10 +121,10 @@ def main():
     print_incidents(filtered_incidents, target_locations_and_thresholds)
 
     # MQTT Broker Settings
-    broker_url = "homebridge.local"
+    broker_url = "mqttpserver.local"
     broker_port = 8883
-    username = "IoT"
-    password = "RunRabbitRun"
+    username = "mqttusername"
+    password = "mqttpassword"
     topic = "CFSAlert/incidentdetectedTESTING"
 
     # TLS Configuration
