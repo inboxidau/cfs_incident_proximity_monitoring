@@ -1,5 +1,4 @@
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=inboxidau_cfs_incident_proximity_monitoring)](https://sonarcloud.io/summary/new_code?id=inboxidau_cfs_incident_proximity_monitoring)
-[![flake8 lint](https://github.com/inboxidau/cfs_incident_proximity_monitoring/actions/workflows/flake8.yml/badge.svg)](https://github.com/inboxidau/cfs_incident_proximity_monitoring/actions/workflows/flake8.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=inboxidau_cfs_incident_proximity_monitoring&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=inboxidau_cfs_incident_proximity_monitoring)[![flake8 lint](https://github.com/inboxidau/cfs_incident_proximity_monitoring/actions/workflows/flake8.yml/badge.svg)](https://github.com/inboxidau/cfs_incident_proximity_monitoring/actions/workflows/flake8.yml)
 [![CodeQL](https://github.com/inboxidau/cfs_incident_proximity_monitoring/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/inboxidau/cfs_incident_proximity_monitoring/actions/workflows/github-code-scanning/codeql)
 
 # cfs_incident_proximity_monitoring
