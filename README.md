@@ -1,3 +1,5 @@
+[![CodeQL](https://github.com/inboxidau/cfs_incident_proximity_monitoring/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/inboxidau/cfs_incident_proximity_monitoring/actions/workflows/github-code-scanning/codeql)
+
 # cfs_incident_proximity_monitoring
 
 **cfs_incident_proximity_monitoring** retrieves incident status information from the South Australian Country Fire Service and sends alerts to an MQTT queue.
