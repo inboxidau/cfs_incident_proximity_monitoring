@@ -1,7 +1,5 @@
 # cfs_incident_proximity_monitoring
 
-# cfs_incident_proximity_monitoring
-
 **cfs_incident_proximity_monitoring** retrieves incident status information from the South Australian Country Fire Service and sends alerts to an MQTT queue.
 
 ## Features
