@@ -1,0 +1,14 @@
+{
+    "sonarlint.connectedMode.project": {
+        "connectionId": "inboxidau",
+        "projectKey": "inboxidau_cfs_incident_proximity_monitoring"
+    },
+    "cSpell.words": [
+        "mqttpassword",
+        "mqttpserver",
+        "mqttusername"
+    ],
+    "flake8.args": [
+        "--max-line-length=120"
+    ]  
+}

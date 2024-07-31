@@ -1,20 +1,23 @@
 import requests
 from geopy.distance import geodesic  # type: ignore
-import paho.mqtt.client as mqtt # type: ignore
+import paho.mqtt.client as mqtt  # type: ignore
 
-#pip install geopy
-#pip install paho-mqtt
+# pip install geopy
+# pip install paho-mqtt
 
-message =  str(0) # default alert detection message is 0 meaning alert off
+message = str(0)  # default alert detection message is 0 meaning alert off
+
 
 def fetch_incident_data(url):
     response = requests.get(url)
     response.raise_for_status()  # Ensure we notice bad responses
     return response.json()
 
+
 def calculate_distance(coord1, coord2):
     """Calculate the distance between two geographic coordinates."""
     return geodesic(coord1, coord2).kilometers
+
 
 def filter_incidents_within_range(incidents, target_locations_and_thresholds):
     """
@@ -22,7 +25,8 @@ def filter_incidents_within_range(incidents, target_locations_and_thresholds):
 
     Parameters:
         incidents (list): List of incident data.
-        target_locations_and_thresholds (list of tuples): Each tuple contains a target name, location, and distance threshold.
+        target_locations_and_thresholds (list of tuples): Each tuple contains a target name, location,
+        and distance threshold.
 
     Returns:
         list: Filtered incidents within the specified ranges.
@@ -39,13 +43,15 @@ def filter_incidents_within_range(incidents, target_locations_and_thresholds):
                     break  # Stop checking other target locations for this incident
     return filtered_incidents
 
+
 def print_incidents(incidents, target_locations_and_thresholds):
     """
     Print details of incidents with the distance from the nearest target location and the threshold used.
 
     Parameters:
         incidents (list): List of filtered incidents.
-        target_locations_and_thresholds (list of tuples): Each tuple contains a target name, location, and distance threshold.
+        target_locations_and_thresholds (list of tuples): Each tuple contains a target name, location,
+        and distance threshold.
     """
     for incident in incidents:
         incident_location = tuple(map(float, incident["Location"].split(',')))
@@ -77,12 +83,13 @@ def print_incidents(incidents, target_locations_and_thresholds):
         print(f"Target location used: {target_name}")
         print()
 
+
 def publish_mqtt_message(message, broker_url, broker_port, username, password, topic, cafile, keyfile, certfile):
     """Publish a message to an MQTT broker."""
 
     # Create MQTT client
     client = mqtt.Client()
-    
+
     # Set TLS configuration
     client.tls_set(ca_certs=cafile)
     client.tls_insecure_set(True)
@@ -97,7 +104,7 @@ def publish_mqtt_message(message, broker_url, broker_port, username, password, t
     client.publish(topic, message)
 
     # Disconnect from MQTT broker
-    client.disconnect()  
+    client.disconnect()
 
 
 def main():
@@ -106,17 +113,17 @@ def main():
 
     url = "https://data.eso.sa.gov.au/prod/cfs/criimson/cfs_current_incidents.json"
     target_locations_and_thresholds = [
-        ("Elizabeth South", (-34.73182000, 138.66192000), 10)  # Target location with a distance threshold of 10 km
-        ,("Goolwa", (-35.50474000, 138.77320000), 5)   # Another target location with a distance threshold of 5 km
-        ,("Adelaide", (-34.92850000, 138.60074000), 50)   # Another target location with a distance threshold of 5 km
+        ("Elizabeth South", (-34.73182000, 138.66192000), 10),  # Target location with a distance threshold of 10 km
+        ("Goolwa", (-35.50474000, 138.77320000), 5),   # Another target location with a distance threshold of 5 km
+        ("Adelaide", (-34.92850000, 138.60074000), 50)   # Another target location with a distance threshold of 5 km
     ]
 
     # Fetch CFS incident data
     cfs_incidents = fetch_incident_data(url)
-    
+
     # Filter incidents
     filtered_incidents = filter_incidents_within_range(cfs_incidents, target_locations_and_thresholds)
-    
+
     # Print filtered incidents
     print_incidents(filtered_incidents, target_locations_and_thresholds)
 
