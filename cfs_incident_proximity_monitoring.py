@@ -25,7 +25,8 @@ def filter_incidents_within_range(incidents, target_locations_and_thresholds):
 
     Parameters:
         incidents (list): List of incident data.
-        target_locations_and_thresholds (list of tuples): Each tuple contains a target name, location, and distance threshold.
+        target_locations_and_thresholds (list of tuples): Each tuple contains a target name, location,
+        and distance threshold.
 
     Returns:
         list: Filtered incidents within the specified ranges.
@@ -49,7 +50,8 @@ def print_incidents(incidents, target_locations_and_thresholds):
 
     Parameters:
         incidents (list): List of filtered incidents.
-        target_locations_and_thresholds (list of tuples): Each tuple contains a target name, location, and distance threshold.
+        target_locations_and_thresholds (list of tuples): Each tuple contains a target name, location,
+        and distance threshold.
     """
     for incident in incidents:
         incident_location = tuple(map(float, incident["Location"].split(',')))
