@@ -111,9 +111,9 @@ def main():
 
     url = "https://data.eso.sa.gov.au/prod/cfs/criimson/cfs_current_incidents.json"
     target_locations_and_thresholds = [
-        ("Elizabeth South", (-34.73182000, 138.66192000), 10)  # Target location with a distance threshold of 10 km
-        ,("Goolwa", (-35.50474000, 138.77320000), 5)   # Another target location with a distance threshold of 5 km
-        ,("Adelaide", (-34.92850000, 138.60074000), 50)   # Another target location with a distance threshold of 5 km
+        ("Elizabeth South", (-34.73182000, 138.66192000), 10),  # Target location with a distance threshold of 10 km
+        ("Goolwa", (-35.50474000, 138.77320000), 5),   # Another target location with a distance threshold of 5 km
+        ("Adelaide", (-34.92850000, 138.60074000), 50)   # Another target location with a distance threshold of 5 km
     ]
 
     # Fetch CFS incident data
@@ -121,7 +121,7 @@ def main():
 
     # Filter incidents
     filtered_incidents = filter_incidents_within_range(cfs_incidents, target_locations_and_thresholds)
-    
+
     # Print filtered incidents
     print_incidents(filtered_incidents, target_locations_and_thresholds)
 
