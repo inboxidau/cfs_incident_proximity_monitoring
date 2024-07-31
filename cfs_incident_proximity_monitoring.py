@@ -1,20 +1,23 @@
 import requests
 from geopy.distance import geodesic  # type: ignore
-import paho.mqtt.client as mqtt # type: ignore
+import paho.mqtt.client as mqtt  # type: ignore
 
-#pip install geopy
-#pip install paho-mqtt
+# pip install geopy
+# pip install paho-mqtt
 
-message =  str(0) # default alert detection message is 0 meaning alert off
+message = str(0)  # default alert detection message is 0 meaning alert off
+
 
 def fetch_incident_data(url):
     response = requests.get(url)
     response.raise_for_status()  # Ensure we notice bad responses
     return response.json()
 
+
 def calculate_distance(coord1, coord2):
     """Calculate the distance between two geographic coordinates."""
     return geodesic(coord1, coord2).kilometers
+
 
 def filter_incidents_within_range(incidents, target_locations_and_thresholds):
     """
@@ -38,6 +41,7 @@ def filter_incidents_within_range(incidents, target_locations_and_thresholds):
                     message = str(1)
                     break  # Stop checking other target locations for this incident
     return filtered_incidents
+
 
 def print_incidents(incidents, target_locations_and_thresholds):
     """
@@ -77,12 +81,13 @@ def print_incidents(incidents, target_locations_and_thresholds):
         print(f"Target location used: {target_name}")
         print()
 
+
 def publish_mqtt_message(message, broker_url, broker_port, username, password, topic, cafile, keyfile, certfile):
     """Publish a message to an MQTT broker."""
 
     # Create MQTT client
     client = mqtt.Client()
-    
+
     # Set TLS configuration
     client.tls_set(ca_certs=cafile)
     client.tls_insecure_set(True)
@@ -97,7 +102,7 @@ def publish_mqtt_message(message, broker_url, broker_port, username, password, t
     client.publish(topic, message)
 
     # Disconnect from MQTT broker
-    client.disconnect()  
+    client.disconnect()
 
 
 def main():
@@ -113,7 +118,7 @@ def main():
 
     # Fetch CFS incident data
     cfs_incidents = fetch_incident_data(url)
-    
+
     # Filter incidents
     filtered_incidents = filter_incidents_within_range(cfs_incidents, target_locations_and_thresholds)
     
